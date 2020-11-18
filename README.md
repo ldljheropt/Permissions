@@ -2,7 +2,7 @@
 # Permissions
 编译时权限申请框架
 
-### Demo:[PermissionsDemo](https://github.com/ldljheropt/PermissionsDemo "PermissionsDemo")
+### 集成使用Demo:[PermissionsDemo](https://github.com/ldljheropt/PermissionsDemo "PermissionsDemo")
 
 # 集成步骤：
 
