@@ -1,0 +1,114 @@
+apply plugin: 'com.android.library'
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.aspectj:aspectjtools:1.8.9'
+        classpath 'org.aspectj:aspectjweaver:1.8.9'
+    }
+}
+
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    api  'org.aspectj:aspectjrt:1.8.13'
+}
+
+import org.aspectj.bridge.IMessage
+import org.aspectj.bridge.MessageHandler
+import org.aspectj.tools.ajc.Main
+import com.android.build.gradle.LibraryPlugin
+
+final def log = project.logger
+final def variants = android.libraryVariants
+
+variants.all { variant ->
+
+    LibraryPlugin plugin = project.plugins.getPlugin(LibraryPlugin)
+
+    JavaCompile javaCompile = variant.javaCompile
+
+    javaCompile.doLast {
+
+        String[] args = ["-showWeaveInfo",
+
+                         "-1.8",
+
+                         "-inpath", javaCompile.destinationDir.toString(),
+
+                         "-aspectpath", javaCompile.classpath.asPath,
+
+                         "-d", javaCompile.destinationDir.toString(),
+
+                         "-classpath", javaCompile.classpath.asPath,
+
+                         "-bootclasspath", plugin.project.android.bootClasspath.join(File.pathSeparator)]
+
+        log.debug "ajc args: " + Arrays.toString(args)
+
+        MessageHandler handler = new MessageHandler(true);
+
+        new Main().run(args, handler);
+
+        for (IMessage message : handler.getMessages(null, true)) {
+
+            switch (message.getKind()) {
+
+                case IMessage.ABORT:
+
+                case IMessage.ERROR:
+
+                case IMessage.FAIL:
+
+                    log.error message.message, message.thrown
+
+                    break;
+
+                case IMessage.WARNING:
+
+                    log.warn message.message, message.thrown
+
+                    break;
+
+                case IMessage.INFO:
+
+                    log.info message.message, message.thrown
+
+                    break;
+
+                case IMessage.DEBUG:
+
+                    log.debug message.message, message.thrown
+
+                    break;
+            }
+        }
+    }
+}

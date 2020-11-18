@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.boywang.permissions" >
+    <application>
+        <activity android:name=".permission.PermissionActivity"
+            android:theme="@style/TranslucentTheme"/>
+    </application>
+</manifest>
+
