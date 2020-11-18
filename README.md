@@ -7,4 +7,4 @@
 ## 1、在工程的build.gradle文件中修改配置：
 
 
-# 2、在app module的build.gradle文件中增加配置：
+### 2、在app module的build.gradle文件中增加配置：
