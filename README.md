@@ -138,12 +138,9 @@ buildscript {
     }
 }
 
-import org.aspectj.bridge.IMessage
-
-import org.aspectj.bridge.MessageHandler
-
-import org.aspectj.tools.ajc.Main
-
+import org.aspectj.bridge.IMessage<br>
+import org.aspectj.bridge.MessageHandler<br>
+import org.aspectj.tools.ajc.Main<br>
 import com.android.build.gradle.LibraryPlugin
 
 final def log = project.logger
