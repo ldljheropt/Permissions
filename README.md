@@ -124,8 +124,11 @@ variants.all { variant ->
 
 
 buildscript {
+
     repositories {
+    
         mavenCentral()
+	
     }
 
     dependencies {
@@ -136,8 +139,11 @@ buildscript {
 
 
 import org.aspectj.bridge.IMessage
+
 import org.aspectj.bridge.MessageHandler
+
 import org.aspectj.tools.ajc.Main
+
 import com.android.build.gradle.LibraryPlugin
 
 final def log = project.logger
