@@ -27,8 +27,8 @@ dependencies {
 
 ## 注意app和moulde中添加配置的区别
 
-
 ## 3、在app的build.gradle文件末尾添加配置：
+
 
 buildscript {
     repositories {
@@ -40,6 +40,7 @@ buildscript {
         classpath 'org.aspectj:aspectjweaver:1.8.9'
     }
 }
+
 
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
@@ -117,6 +118,8 @@ variants.all { variant ->
 
 
 ## 在module的build.gradle文件末尾添加配置：
+
+
 buildscript {
     repositories {
         mavenCentral()
@@ -127,17 +130,19 @@ buildscript {
         classpath 'org.aspectj:aspectjweaver:1.8.9'
     }
 }
+
+
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
-### import com.android.build.gradle.LibraryPlugin
+import com.android.build.gradle.LibraryPlugin
 
 final def log = project.logger
-### final def variants = android.libraryVariants
+final def variants = android.libraryVariants
 
 variants.all { variant ->
 
-###    LibraryPlugin plugin = project.plugins.getPlugin(LibraryPlugin)
+    LibraryPlugin plugin = project.plugins.getPlugin(LibraryPlugin)
 
     JavaCompile javaCompile = variant.javaCompile
 
@@ -155,7 +160,7 @@ variants.all { variant ->
 
                          "-classpath", javaCompile.classpath.asPath,
 
-###                         "-bootclasspath", plugin.project.android.bootClasspath.join(File.pathSeparator)]
+                         "-bootclasspath", plugin.project.android.bootClasspath.join(File.pathSeparator)]
 
         log.debug "ajc args: " + Arrays.toString(args)
 
