@@ -31,8 +31,11 @@ dependencies {
 
 
 buildscript {
+
     repositories {
+    
         mavenCentral()
+	
     }
 
     dependencies {
