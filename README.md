@@ -6,8 +6,7 @@
 
 ## 1、在工程的build.gradle文件中添加配置：
 
-
-allprojects {
+allprojects {  
 
     repositories {
 	
