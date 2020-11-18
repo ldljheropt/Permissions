@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.boywang.permissionlibrary"
+        applicationId "com.boywang.permission"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1

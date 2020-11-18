@@ -1,4 +1,4 @@
-package com.boywang.permissionlibrary;
+package com.boywang.permission;
 
 import androidx.appcompat.app.AppCompatActivity;
 
