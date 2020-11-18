@@ -214,3 +214,28 @@ variants.all { variant ->
     }
 }
 
+## 4、在Activity或Fragment中添加注解：
+
+    @Permission(value = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, requestCode = 200,isJumpSettings = true)
+    public void testRequest() {
+        Toast.makeText(this, "权限申请成功...", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @PermissionCancel
+    public void testCancel() {
+        Toast.makeText(this, "权限被拒绝", Toast.LENGTH_SHORT).show();
+    }
+
+    @PermissionDenied
+    public void testDenied() {
+        Toast.makeText(this, "权限被拒绝（用户勾选了，不再提醒）", Toast.LENGTH_SHORT).show();
+    }
+    
+## 5、AndroidManifest.xml文件中增加需要申请的权限列表：
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+	
+	
+
